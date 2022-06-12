@@ -2,15 +2,15 @@
 // using DRY system = don't repeat yourself
 
 // get input value
-function getInput(){
-    const depositField = document.getElementById('deposit-input');
-    const depositInput = depositField.value;
-    const depositAmount = parseFloat(depositInput);
+function getInput(inputId){
+    const inputField = document.getElementById(inputId);
+    const fieldValue = inputField.value;
+    const insertedAmount = parseFloat(fieldValue);
 
     // reset the deposit input field value
-    depositField.value = '';
+    inputField.value = '';
 
-    return depositAmount;
+    return insertedAmount;
 }
 
 
@@ -22,7 +22,7 @@ document.getElementById('deposit-button').addEventListener('click',function(){
     // const depositField = document.getElementById('deposit-input');
     // const depositInput = depositField.value;
     // const depositAmount = parseFloat(depositInput);
-    const depositAmount = getInput();
+    const depositAmount = getInput('deposit-input');
 
     // displayed deposit amount
     const depositDisplayField = document.getElementById('deposit-total');
@@ -48,9 +48,9 @@ document.getElementById('deposit-button').addEventListener('click',function(){
 document.getElementById('withdraw-button').addEventListener('click',function(){
     
     // get withdraw amount 
-    const withdrawField = document.getElementById('withdraw-input');
-    const withdrawInput = withdrawField.value;
-    const withdrawAmount = parseFloat(withdrawInput);
+    // const withdrawField = document.getElementById('withdraw-input');
+    // const withdrawInput = withdrawField.value;
+    const withdrawAmount = getInput('withdraw-input');
     
     // display withdraw amount 
     const withdrawAmountDisplayingField = document.getElementById('withdraw-total');
