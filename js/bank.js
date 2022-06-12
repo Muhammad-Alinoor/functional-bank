@@ -23,13 +23,21 @@ function updateDepositWithdrawDisplay(totalId,amountToBeAdded){
     totalDisplayField.innerText = amountToBeAdded + totalDisplayingAmount;
 }
 
-// update value of balance displaying field
-function updateBalance(amount,isAdd){
+//  current balance
+function getCurrentBalance(){
     // get the displayed balance
     const balanceDisplayingField = document.getElementById("current-total");
     const balanceDisplayingText = balanceDisplayingField.innerText;
     const balanceDisplayingAmount = parseFloat(balanceDisplayingText);
-    
+    return balanceDisplayingAmount;
+}
+// update value of balance displaying field
+function updateBalance(amount,isAdd){
+    // get the displayed balance
+    const balanceDisplayingField = document.getElementById("current-total");
+    /* const balanceDisplayingText = balanceDisplayingField.innerText;
+    const balanceDisplayingAmount = parseFloat(balanceDisplayingText); */
+    const balanceDisplayingAmount = getCurrentBalance();
     // set the update balance to the balanceDisplayingfield 
     if(isAdd == true){
         balanceDisplayingField.innerText = balanceDisplayingAmount + amount;
@@ -48,7 +56,7 @@ document.getElementById('deposit-button').addEventListener('click',function(){
     // const depositField = document.getElementById('deposit-input');
     // const depositInput = depositField.value;
     // const depositAmount = parseFloat(depositInput);
-    const depositAmount = getInput('deposit-input');
+    
     /*
 
     // displayed deposit amount
@@ -60,7 +68,6 @@ document.getElementById('deposit-button').addEventListener('click',function(){
     depositDisplayField.innerText = depositAmount + depositDisplayingAmount;
     
     */
-   updateDepositWithdrawDisplay('deposit-total',depositAmount);
 
     /* // get the displayed balance
     const balanceDisplayingField = document.getElementById("current-total");
@@ -72,7 +79,11 @@ document.getElementById('deposit-button').addEventListener('click',function(){
 
     // reset the deposit input field value
     // depositField.value = '';
-    updateBalance(depositAmount,true);
+    const depositAmount = getInput('deposit-input');
+    if(depositAmount>0){
+        updateDepositWithdrawDisplay('deposit-total',depositAmount);
+        updateBalance(depositAmount,true);
+    }
 });
 
 // withdraw users money
@@ -81,7 +92,7 @@ document.getElementById('withdraw-button').addEventListener('click',function(){
     // get withdraw amount 
     // const withdrawField = document.getElementById('withdraw-input');
     // const withdrawInput = withdrawField.value;
-    const withdrawAmount = getInput('withdraw-input');
+    
     /* 
     // display withdraw amount 
     const withdrawAmountDisplayingField = document.getElementById('withdraw-total');
@@ -90,7 +101,7 @@ document.getElementById('withdraw-button').addEventListener('click',function(){
 
     // set withdraw amount to the withdraw display
     withdrawAmountDisplayingField.innerText = withdrawAmount + withdrawDisplayingAmount; */
-    updateDepositWithdrawDisplay('withdraw-total',withdrawAmount);
+    
 
     /*  // get the displayed balance
      const balanceDisplayingField = document.getElementById("current-total");
@@ -102,6 +113,12 @@ document.getElementById('withdraw-button').addEventListener('click',function(){
 
     // reset the deposit input field value
     withdrawField.value = ''; */
-    updateBalance(withdrawAmount,false);
+    const withdrawAmount = getInput('withdraw-input');
+    const currentBalance = getCurrentBalance();
+    if(withdrawAmount > 0 && withdrawAmount <= currentBalance){
+        updateDepositWithdrawDisplay('withdraw-total',withdrawAmount);
+        updateBalance(withdrawAmount,false);  
+    }
+    
 
 })
