@@ -11,6 +11,16 @@ function getInput(inputId){
     inputField.value = '';
 
     return insertedAmount;
+};
+// update value of balance displaying field 
+function updateDepositWithdrawDisplay(totalId,amountToBeAdded){
+    // displayed deposit amount
+    const totalDisplayField = document.getElementById(totalId);
+    const totalDisplayInText = totalDisplayField.innerText;
+    const totalDisplayingAmount = parseFloat(totalDisplayInText);
+    
+    // set deposit value to the deposit display
+    totalDisplayField.innerText = amountToBeAdded + totalDisplayingAmount;
 }
 
 
@@ -23,6 +33,7 @@ document.getElementById('deposit-button').addEventListener('click',function(){
     // const depositInput = depositField.value;
     // const depositAmount = parseFloat(depositInput);
     const depositAmount = getInput('deposit-input');
+    /*
 
     // displayed deposit amount
     const depositDisplayField = document.getElementById('deposit-total');
@@ -31,6 +42,9 @@ document.getElementById('deposit-button').addEventListener('click',function(){
     
     // set deposit value to the deposit display
     depositDisplayField.innerText = depositAmount + depositDisplayingAmount;
+    
+    */
+   updateDepositWithdrawDisplay('deposit-total',depositAmount);
 
     // get the displayed balance
     const balanceDisplayingField = document.getElementById("current-total");
@@ -51,14 +65,15 @@ document.getElementById('withdraw-button').addEventListener('click',function(){
     // const withdrawField = document.getElementById('withdraw-input');
     // const withdrawInput = withdrawField.value;
     const withdrawAmount = getInput('withdraw-input');
-    
+    /* 
     // display withdraw amount 
     const withdrawAmountDisplayingField = document.getElementById('withdraw-total');
     const withdrawAmountDisplayedInText = withdrawAmountDisplayingField.innerText;
     const withdrawDisplayingAmount = parseFloat(withdrawAmountDisplayedInText);
 
     // set withdraw amount to the withdraw display
-    withdrawAmountDisplayingField.innerText = withdrawAmount + withdrawDisplayingAmount;
+    withdrawAmountDisplayingField.innerText = withdrawAmount + withdrawDisplayingAmount; */
+    updateDepositWithdrawDisplay('withdraw-total',withdrawAmount);
 
      // get the displayed balance
      const balanceDisplayingField = document.getElementById("current-total");
