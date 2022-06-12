@@ -1,11 +1,28 @@
+// functional way to do the banking
+// using DRY system = don't repeat yourself
+
+// get input value
+function getInput(){
+    const depositField = document.getElementById('deposit-input');
+    const depositInput = depositField.value;
+    const depositAmount = parseFloat(depositInput);
+
+    // reset the deposit input field value
+    depositField.value = '';
+
+    return depositAmount;
+}
+
+
 
 // Deposit users money
 
 document.getElementById('deposit-button').addEventListener('click',function(){
-    // get deposit amount
-    const depositField = document.getElementById('deposit-input');
-    const depositInput = depositField.value;
-    const depositAmount = parseFloat(depositInput);
+    // // get deposit amount
+    // const depositField = document.getElementById('deposit-input');
+    // const depositInput = depositField.value;
+    // const depositAmount = parseFloat(depositInput);
+    const depositAmount = getInput();
 
     // displayed deposit amount
     const depositDisplayField = document.getElementById('deposit-total');
@@ -24,7 +41,7 @@ document.getElementById('deposit-button').addEventListener('click',function(){
     balanceDisplayingField.innerText = balanceDisplayingAmount + depositAmount;
 
     // reset the deposit input field value
-    depositField.value = '';
+    // depositField.value = '';
 });
 
 // withdraw users money
